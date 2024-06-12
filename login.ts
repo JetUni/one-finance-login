@@ -7,8 +7,11 @@ import readline from 'readline/promises';
  * @param readLine Used for gathering input from the user through the terminal
  */
 export async function inputPhoneNumber(page: Page, readLine: readline.Interface) {
+  const phoneNumberLabelSelector = "input[data-testid='phone-number-input']";
+  const phoneNumberLabel = await page.waitForSelector(phoneNumberLabelSelector);
   const phoneNumberInputSelector = "input[data-testid='phone-number-input']";
   const phoneNumber = await readLine.question('Enter your phone number: ');
+  await phoneNumberLabel?.click();
   await page.waitForSelector(phoneNumberInputSelector);
   await page.type(phoneNumberInputSelector, phoneNumber, { delay: 10 });
   await page.keyboard.press('Enter');
@@ -43,7 +46,7 @@ export async function inputPinCode(page: Page, readLine: readline.Interface) {
  * @param page The Puppeteer page to search for the selector and input the phone number
  */
 export async function checkForElementToIndicateSuccessfulLogin(page: Page): Promise<boolean> {
-  const cashBalanceSelector = "div[data-testid='total-balance-subheader']";
+  const cashBalanceSelector = "div[data-testid='banking-balance-card-header-title']";
   try {
     await page.waitForSelector(cashBalanceSelector, { timeout: 5000 });
     return true;

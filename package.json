@@ -1,7 +1,7 @@
 {
-  "name": "one-finance",
+  "name": "one-finance-login",
   "version": "1.0.0",
-  "description": "Connect to ONE Finance as a bank aggregator",
+  "description": "Login to ONE Finance via puppeteer and save user session",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts"
@@ -23,6 +23,7 @@
     "banking",
     "finance",
     "data aggregator",
+    "login",
     "ONE Finance"
   ]
 }
